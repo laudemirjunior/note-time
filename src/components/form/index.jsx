@@ -1,5 +1,5 @@
 // import { TextField } ;
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory, Redirect, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,10 +8,20 @@ import { useState } from "react";
 import { UseLogin } from "../../context/loginContext.js";
 
 const FormComponent = () => {
-  const { token, logIn, logOut } = UseLogin();
+  const navigate = useNavigate();
+  const { logIn } = UseLogin();
   const [login, setLogin] = useState(true);
 
-  const Schema = yup.object().shape({
+  const LoginSchema = yup.object().shape({
+    email: yup.string().email("email inválido").required("email obrigatório"),
+    password: yup
+      .string()
+      .required("senha obrigatória")
+      .min(4, "Mínimo de 4 dígitos"),
+  });
+
+  const RegisterSchema = yup.object().shape({
+    name: yup.string().required("nome obrigatório"),
     email: yup.string().email("email inválido").required("email obrigatório"),
     password: yup
       .string()
@@ -24,11 +34,12 @@ const FormComponent = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(Schema),
+    resolver: login ? yupResolver(LoginSchema) : yupResolver(RegisterSchema),
   });
 
   function onSubmitFunction(data) {
     logIn(data);
+    navigate("/dashboard");
   }
 
   return (
@@ -42,18 +53,18 @@ const FormComponent = () => {
               id="outlined-basicEmail"
               label="Email"
               placeholder="Email"
-              helperText={errors.email?.message}
               {...register("email")}
             />
+            <span>{errors.email?.message}</span>
 
             <input
               type="password"
               id="outlined-basicPassword"
               label="Senha"
               placeholder="Senha"
-              helperText={errors.password?.message}
               {...register("password")}
             />
+            <span>{errors.password?.message}</span>
 
             <button type="submit">Entrar</button>
             <span>Não possui conta? Clique no botão abaixo</span>
@@ -67,25 +78,25 @@ const FormComponent = () => {
               id="outlined-basicEmail"
               label="Nome"
               placeholder="Nome"
-              // helperText={errors.email?.message}
-              // {...register("email")}
+              {...register("name")}
             />
+            <span>{errors.name?.message}</span>
             <input
               type="text"
               id="outlined-basicEmail"
               label="Email"
               placeholder="Nome"
-              // helperText={errors.email?.message}
-              // {...register("email")}
+              {...register("email")}
             />
+            <span>{errors.email?.message}</span>
             <input
               type="password"
               id="outlined-basicPassword"
               label="Senha"
               placeholder="Senha"
-              // helperText={errors.password?.message}
-              // {...register("password")}
+              {...register("password")}
             />
+            <span>{errors.password?.message}</span>
 
             <button type="submit">Cadastrar</button>
             <span>Já possui conta? Entre aqui</span>
