@@ -38,7 +38,7 @@ margin-bottom: 20px;`
 
 export const SearchInput = styled.input`
 width: 80%;
-height: 30px ;
+height: 40px ;
 border-radius: 20px ;
 padding: 5px ;
 border: 1px solid #80BBDF ;

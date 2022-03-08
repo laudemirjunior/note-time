@@ -3,6 +3,7 @@ import Dashboard from "../pages/dashboard";
 import Groups from "../pages/groups";
 import Home from "../pages/home";
 import Login from "../pages/login";
+import MyGroups from "../pages/myGroups";
 
 export default function Router() {
   return (
@@ -11,6 +12,7 @@ export default function Router() {
       <Route path="login" element={<Login />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="groups" element={<Groups/>} />
+      <Route path="my-groups" element={<MyGroups/>} />
     </Routes>
   );
 }

@@ -23,7 +23,7 @@ export default function Sidebar() {
           <AiFillTrophy />
           <p>Classificação</p>
         </div>
-        <div onClick={() => navigate("/")}>
+        <div onClick={() => navigate("/my-groups")}>
           <AiOutlineTeam />
           <p>Meus grupos</p>
         </div>
