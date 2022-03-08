@@ -1,10 +1,10 @@
 import React from "react";
-import SadBar from "../../components/sadBar";
+import Sidebar from "../../components/sidebar";
 
 export default function Dashboard() {
   return (
     <>
-      <SadBar />
+      <Sidebar />
     </>
   );
 }
