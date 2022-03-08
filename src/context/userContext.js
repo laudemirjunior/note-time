@@ -6,13 +6,13 @@ import {
   useState,
 } from "react";
 import api from "../services";
-import { useLoginContext } from "./loginContext";
+import { UseLogin } from "./loginContext";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [activities, setActivities] = useState([]);
-  const { token } = useLoginContext();
+  const { token } = UseLogin();
 
   function getUserActivities() {
     api
@@ -85,7 +85,8 @@ export const UserProvider = ({ children }) => {
         pauseTimer,
       }}
     >
-      {children}
+      {" "}
+      {children}{" "}
     </UserContext.Provider>
   );
 };

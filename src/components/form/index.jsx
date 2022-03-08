@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "./style.js";
 import { useState } from "react";
-import { UseLogin } from "../../context/loginContext.js";
+import { UseLogin } from "../../context/loginContext";
 
 const FormComponent = () => {
   const navigate = useNavigate();
