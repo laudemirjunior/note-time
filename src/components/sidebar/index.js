@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-export default function SadBar() {
+export default function Sidebar() {
   const navigate = useNavigate();
 
   return (
