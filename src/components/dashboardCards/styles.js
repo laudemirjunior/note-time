@@ -25,6 +25,10 @@ export const Title = styled.div`
     justify-content: space-between;
   }
 
+  svg {
+    color: #db7070;
+  }
+
   p,
   h3 {
     color: #808080;
