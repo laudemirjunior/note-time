@@ -9,15 +9,19 @@ import {
 } from "react-icons/hi";
 import DashboardCards from "../../components/dashboardCards";
 import DashboardActivities from "../../components/dashboardActivities";
+import MobileBar from "../../components/mobileBar";
 
 export default function Dashboard() {
   return (
     <C.MainContainer>
-      <Sidebar />
+      <div id="sidebar">
+        <Sidebar />
+      </div>
 
       <C.Container>
         <section>
           <C.Search>
+            <h4>Logo</h4>
             <input placeholder="Realize sua busca..." />
 
             <div>
@@ -53,6 +57,10 @@ export default function Dashboard() {
           </C.Activities>
         </section>
       </C.Container>
+
+      <div id="mobilebar">
+        <MobileBar />
+      </div>
     </C.MainContainer>
   );
 }
