@@ -5,18 +5,29 @@ export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
   const [token, setToken] = useState(
-    () => JSON.parse(localStorage.getItem("@noteTime:accessToken")) || ""
+    localStorage.getItem("@noteTime:accessToken") || ""
   );
 
-  const logIn = useCallback(async (loginData) => {
+  const logIn = useCallback(async (data) => {
+    console.log(data);
+
     await api
-      .post("/user/login", loginData)
+      .post("/user/login", data)
       .then((response) => {
         const { access_token } = response.data;
-        localStorage.setItem("@noteTime:accessToken", access_token);
+        console.log(response);
+        localStorage.setItem(
+          "@noteTime:accessToken",
+          JSON.stringify(access_token)
+        );
         setToken(access_token);
       })
-      .catch((_) => console.log("Erro ao conectar a API"));
+      .catch((err) => console.log(err));
+  }, []);
+
+  const logOut = useCallback(() => {
+    localStorage.removeItem("@noteTime:accessToken");
+    setToken("");
   }, []);
 
   return (
@@ -24,6 +35,7 @@ export const LoginProvider = ({ children }) => {
       value={{
         token,
         logIn,
+        logOut,
       }}
     >
       {children}
@@ -31,4 +43,4 @@ export const LoginProvider = ({ children }) => {
   );
 };
 
-export const useLoginContext = () => useContext(LoginContext);
+export const UseLogin = () => useContext(LoginContext);
