@@ -7,6 +7,7 @@ import {
   Title,
 } from "./styles";
 
+
 export default function CardGroups() {
   return (
     <CardContainer>
@@ -14,8 +15,7 @@ export default function CardGroups() {
         <CardImage />
         <Title>React</Title>
       </SubCardContainer>
-
-      <ExitButton />
+      <ExitButton/>     
     </CardContainer>
   );
 }
