@@ -35,11 +35,14 @@ export const Controls = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 15%;
   margin-right: 12px;
   margin-top: 10px;
 
   svg {
     font-size: 18px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 15%;
   }
 `;
