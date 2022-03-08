@@ -1,5 +1,10 @@
 import React from "react";
+import SadBar from "../../components/sadBar";
 
 export default function Dashboard() {
-  return <div>index</div>;
+  return (
+    <>
+      <SadBar />
+    </>
+  );
 }
