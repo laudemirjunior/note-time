@@ -125,6 +125,13 @@ export const Title = styled.div`
   }
 `;
 
-export const RecentActivities = styled.div``;
+export const RecentActivities = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 
-export const Activities = styled.div``;
+export const Activities = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;

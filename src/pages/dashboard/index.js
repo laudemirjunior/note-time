@@ -10,8 +10,15 @@ import {
 import DashboardCards from "../../components/dashboardCards";
 import DashboardActivities from "../../components/dashboardActivities";
 import MobileBar from "../../components/mobileBar";
+import { useUserContext } from "../../context/userContext";
 
 export default function Dashboard() {
+  const { activities } = useUserContext();
+  const favorites = activities.filter((activity) => activity.favorite === true);
+  const notFavorites = activities.filter(
+    (activity) => activity.favorite === false
+  );
+
   return (
     <C.MainContainer>
       <div id="sidebar">
@@ -40,7 +47,9 @@ export default function Dashboard() {
             </div>
           </C.Title>
           <C.RecentActivities>
-            <DashboardCards />
+            {favorites.map((activity) => (
+              <DashboardCards key={activity.id} activity={activity} />
+            ))}
           </C.RecentActivities>
         </section>
 
@@ -53,7 +62,9 @@ export default function Dashboard() {
             </div>
           </C.Title>
           <C.Activities>
-            <DashboardActivities />
+            {notFavorites.map((activity) => (
+              <DashboardActivities key={activity.id} activity={activity} />
+            ))}
           </C.Activities>
         </section>
       </C.Container>
