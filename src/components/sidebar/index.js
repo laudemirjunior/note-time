@@ -27,7 +27,7 @@ export default function Sidebar() {
           <AiOutlineTeam />
           <p>Meus grupos</p>
         </div>
-        <div onClick={() => navigate("/")}>
+        <div onClick={() => navigate("/groups")}>
           <AiOutlineGroup />
           <p>Todos os grupos</p>
         </div>
