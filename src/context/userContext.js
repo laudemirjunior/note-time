@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useState } from "react";
 import api from "../services";
 import { UseLogin } from "./loginContext";
 
@@ -32,7 +26,7 @@ export const UserProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res))
+      .then((res) => getUserActivities())
       .catch((err) => console.log(err));
   }
 
@@ -43,37 +37,39 @@ export const UserProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res))
+      .then((res) => getUserActivities()())
       .catch((err) => console.log(err));
   }
 
   function startTimer(activityId) {
     api
-      .post(`/activity/play/${activityId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        `/activity/play/${activityId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
 
   function pauseTimer(activityId) {
     api
-      .post(`/activity/pause/${activityId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => console.log(res))
+      .post(
+        `/activity/pause/${activityId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => getUserActivities())
       .catch((err) => console.log(err));
   }
-
-  useEffect(() => {
-    if (token) {
-      getUserActivities();
-    }
-  }, [activities]);
 
   return (
     <UserContext.Provider
@@ -83,10 +79,10 @@ export const UserProvider = ({ children }) => {
         deleteActivity,
         startTimer,
         pauseTimer,
+        getUserActivities,
       }}
     >
-      {" "}
-      {children}{" "}
+      {children}
     </UserContext.Provider>
   );
 };
