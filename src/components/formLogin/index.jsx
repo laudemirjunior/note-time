@@ -3,18 +3,22 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Button, Input, Text, VStack } from "@chakra-ui/react";
+import { UseLogin } from "../../context/loginContext";
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .required("Insira seu email")
     .email("Digite um email valido"),
-  password: yup.string().required("Insira sua senha*"),
+  password: yup
+    .string()
+    .required("Insira sua senha*")
+    .min(4, "Mínimo de 4 dígitos"),
 });
 
 export const FormLogin = () => {
   const navigate = useNavigate();
-
+  const { logIn } = UseLogin();
   const {
     register,
     handleSubmit,
@@ -22,8 +26,8 @@ export const FormLogin = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleLogin = (values, e) => {
-    e.preventDefault();
-    console.log(values);
+    logIn(values);
+    navigate("/dashboard");
   };
   return (
     <>
