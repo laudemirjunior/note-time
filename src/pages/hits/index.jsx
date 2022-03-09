@@ -31,7 +31,7 @@ export default function Hits() {
           flexDirection="column"
           gridGap="30px"
         >
-          <Heading>ScoreBoard</Heading>
+          <Heading>Tabela </Heading>
           <VStack
             w="80%"
             h="70%"
@@ -39,7 +39,6 @@ export default function Hits() {
             alignItems="start"
             justifyContent="start"
             p="50px"
-            boxShadow="xl"
             border="1px solid"
             borderColor="#CBD5E0"
             borderRadius="10px"
@@ -50,7 +49,7 @@ export default function Hits() {
                 <HStack
                   gridGap="10px"
                   borderBottom="1px solid"
-                  borderColor="#CBD5E0"
+                  borderColor="black"
                   w="100%"
                   pb="15px"
                   justifyContent="space-between"
