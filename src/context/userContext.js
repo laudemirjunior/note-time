@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services";
 import { UseLogin } from "./loginContext";
 
@@ -6,6 +6,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [activities, setActivities] = useState([]);
+  const [user, setUser] = useState([]);
   const { token } = UseLogin();
 
   function getUserActivities() {
@@ -15,7 +16,10 @@ export const UserProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setActivities(res.data.activity))
+      .then((res) => {
+        setActivities(res.data.activity);
+        setUser(res.data);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -71,15 +75,37 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   }
 
+  function createActivity(activityName) {
+    api
+      .post("/activity", activityName, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        getUserActivities();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // useEffect(() => {
+  //   if (user.length === 0) {
+  //     getUserActivities();
+  //   }
+  // }, []);
+
   return (
     <UserContext.Provider
       value={{
+        user,
         activities,
         favoriteActivity,
         deleteActivity,
         startTimer,
         pauseTimer,
         getUserActivities,
+        createActivity,
       }}
     >
       {children}

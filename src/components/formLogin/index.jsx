@@ -27,7 +27,6 @@ export const FormLogin = () => {
 
   const handleLogin = (values, e) => {
     logIn(values);
-    navigate("/dashboard");
   };
   return (
     <>

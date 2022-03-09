@@ -104,6 +104,7 @@ export const Title = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 95%;
+  position: relative;
 
   div {
     display: flex;
@@ -122,6 +123,14 @@ export const Title = styled.div`
     background-color: #0077c0;
     color: #ffffff;
     font-size: 15px;
+  }
+
+  #modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
   }
 `;
 
