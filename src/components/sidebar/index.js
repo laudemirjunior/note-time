@@ -15,11 +15,11 @@ export default function Sidebar() {
   return (
     <Container>
       <div id="links">
-        <div onClick={() => navigate("/")}>
+        <div onClick={() => navigate("/dashboard")}>
           <AiFillFolder />
           <p>Atividades</p>
         </div>
-        <div onClick={() => navigate("/")}>
+        <div onClick={() => navigate("/hits")}>
           <AiFillTrophy />
           <p>Classificação</p>
         </div>

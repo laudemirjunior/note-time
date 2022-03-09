@@ -1,4 +1,5 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import Sidebar from "../../components/sidebar";
 import * as C from "./styles";
 import {
@@ -11,13 +12,20 @@ import DashboardCards from "../../components/dashboardCards";
 import DashboardActivities from "../../components/dashboardActivities";
 import MobileBar from "../../components/mobileBar";
 import { useUserContext } from "../../context/userContext";
+import { UseLogin } from "../../context/loginContext";
 
 export default function Dashboard() {
-  const { activities } = useUserContext();
+  const navigate = useNavigate();
+  const { activities, getUserActivities } = useUserContext();
+  const { token } = UseLogin();
   const favorites = activities.filter((activity) => activity.favorite === true);
   const notFavorites = activities.filter(
     (activity) => activity.favorite === false
   );
+
+  useEffect(() => {
+    getUserActivities();
+  }, []);
 
   return (
     <C.MainContainer>
@@ -33,7 +41,7 @@ export default function Dashboard() {
 
             <div>
               <p>Sair</p>
-              <HiOutlineLogout />
+              <HiOutlineLogout onClick={() => navigate("/login")} />
             </div>
           </C.Search>
         </section>

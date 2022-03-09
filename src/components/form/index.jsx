@@ -1,5 +1,4 @@
 // import { TextField } ;
-import { Link, useHistory, Redirect, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +7,6 @@ import { useState } from "react";
 import { UseLogin } from "../../context/loginContext";
 
 const FormComponent = () => {
-  const navigate = useNavigate();
   const { logIn } = UseLogin();
   const [login, setLogin] = useState(true);
 
@@ -39,7 +37,6 @@ const FormComponent = () => {
 
   function onSubmitFunction(data) {
     logIn(data);
-    navigate("/dashboard");
   }
 
   return (
