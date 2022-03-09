@@ -19,7 +19,11 @@ export const ImageDiv = styled.div`
     display: flex;
     height: 100vh;
     width: 50%;
-    background: linear-gradient(270deg, #456990 0%, rgba(2, 128, 144, 0) 89.4%);
+    background: linear-gradient(
+      130deg,
+      rgba(15, 176, 176, 1),
+      rgba(0, 47, 214, 1)
+    );
     align-items: center;
     justify-content: center;
     img {
