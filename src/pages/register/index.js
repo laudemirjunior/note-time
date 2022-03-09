@@ -1,18 +1,18 @@
 import React from "react";
-import { FormLogin } from "../../components/formLogin/index.jsx";
+import { FormRegister } from "../../components/formRegister/index.jsx";
 import { GeneralDiv } from "./style.js";
 import { ImageDiv } from "./style.js";
 import { FormDiv } from "./style.js";
 
-export default function Login() {
+export default function Register() {
   return (
     <GeneralDiv>
-      <FormDiv>
-        <FormLogin />
-      </FormDiv>
       <ImageDiv>
-        <img src={require("../../assets/registerImage.png")} alt="" />
+        <img src={require("../../assets/diary.png")} alt="" />
       </ImageDiv>
+      <FormDiv>
+        <FormRegister />
+      </FormDiv>
     </GeneralDiv>
   );
 }
