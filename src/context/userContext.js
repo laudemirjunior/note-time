@@ -6,6 +6,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [activities, setActivities] = useState([]);
+  const [scoreBoard, setScoreBoard] = useState([]);
   const [user, setUser] = useState([]);
   const { token } = UseLogin();
 
@@ -75,6 +76,21 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   }
 
+  function getScoreBoard() {
+    api
+      .get(
+        `/user/all`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => setScoreBoard(res.data))
+      .catch((err) => console.log(err));
+  }
+
   function createActivity(activityName) {
     api
       .post("/activity", activityName, {
@@ -100,11 +116,13 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         activities,
+        scoreBoard,
         favoriteActivity,
         deleteActivity,
         startTimer,
         pauseTimer,
         getUserActivities,
+        getScoreBoard,
         createActivity,
       }}
     >

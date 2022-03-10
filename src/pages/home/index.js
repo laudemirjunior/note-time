@@ -1,9 +1,10 @@
 import React from "react";
-import Button from "../../components/button";
+
 import CardDevelopers from "../../components/cardDevelopers";
 import { developers } from "../../infos";
 import { Container, Footer, Header, Illustration, Infos } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { Link, Button } from "@chakra-ui/react";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -16,8 +17,23 @@ export default function Home() {
             <p onClick={() => navigate("/")}>Logo</p>
           </div>
           <div>
-            <p onClick={() => navigate("/login")}>Cadastro</p>
-            <p onClick={() => navigate("/login")}>Login</p>
+            <Link
+              transition="0.5s"
+              _hover={{ opacity: "0.5", cursor: "pointer" }}
+              onClick={() => navigate("/register")}
+              fontSize="22px"
+            >
+              Cadastro
+            </Link>
+            <Link
+              onClick={() => navigate("/login")}
+              fontSize="22px"
+              transition="0.5s"
+              _hover={{ opacity: "0.5", cursor: "pointer" }}
+              mb="5px"
+            >
+              Login
+            </Link>
           </div>
         </div>
       </Header>
@@ -29,7 +45,17 @@ export default function Home() {
             feito.
           </h2>
           <h3>Pitágoras</h3>
-          <Button onClick={() => navigate("/login")}>
+          <Button
+            onClick={() => navigate("/login")}
+            transition="0.5s"
+            _hover={{ opacity: "0.5", cursor: "pointer" }}
+            bgColor="var(--darkBlue)"
+            h="60px"
+            fontSize="24px"
+            color="white"
+            p="20px"
+            borderRadius="10px"
+          >
             Comece a Organizar Seus estudos!
           </Button>
         </div>

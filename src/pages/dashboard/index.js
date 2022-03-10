@@ -18,7 +18,7 @@ import { UseLogin } from "../../context/loginContext";
 export default function Dashboard() {
   const navigate = useNavigate();
   const { activities, getUserActivities } = useUserContext();
-  const { token } = UseLogin();
+  const { token, logOut } = UseLogin();
   const favorites = activities.filter((activity) => activity.favorite === true);
   const notFavorites = activities.filter(
     (activity) => activity.favorite === false
@@ -43,7 +43,7 @@ export default function Dashboard() {
 
             <div>
               <p>Sair</p>
-              <HiOutlineLogout onClick={() => navigate("/login")} />
+              <HiOutlineLogout onClick={() => logOut()} />
             </div>
           </C.Search>
         </section>

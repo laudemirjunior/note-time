@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Button, Input, Text, VStack } from "@chakra-ui/react";
+import { UseLogin } from "../../context/loginContext";
 
 const schema = yup.object().shape({
   name: yup.string().required("Insira seu username*"),
@@ -15,6 +16,8 @@ const schema = yup.object().shape({
 });
 
 export const FormRegister = () => {
+  const { registerUser } = UseLogin();
+
   const navigate = useNavigate();
 
   const {
@@ -22,9 +25,9 @@ export const FormRegister = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const handleRegister = (values, e) => {
-    e.preventDefault();
-    console.log(values);
+
+  const handleRegister = (values) => {
+    registerUser(values);
   };
 
   return (
@@ -100,6 +103,8 @@ export const FormRegister = () => {
           mt="3vh"
           color="var(--white)"
           fontSize="18px"
+          transition="0.5s"
+          _hover={{ opacity: "0.5", cursor: "pointer" }}
         >
           Cadastrar
         </Button>
@@ -113,6 +118,8 @@ export const FormRegister = () => {
           mt="3vh"
           color="var(--white)"
           fontSize="18px"
+          transition="0.5s"
+          _hover={{ opacity: "0.5", cursor: "pointer" }}
         >
           Entrar
         </Button>
