@@ -100,6 +100,8 @@ export const FormRegister = () => {
           mt="3vh"
           color="var(--white)"
           fontSize="18px"
+          transition="0.5s"
+          _hover={{ opacity: "0.5", cursor: "pointer" }}
         >
           Cadastrar
         </Button>
@@ -113,6 +115,8 @@ export const FormRegister = () => {
           mt="3vh"
           color="var(--white)"
           fontSize="18px"
+          transition="0.5s"
+          _hover={{ opacity: "0.5", cursor: "pointer" }}
         >
           Entrar
         </Button>
