@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { IoLogOutOutline } from "react-icons/io5";
 
-
 export const CardContainer = styled.div`
   width: 80%;
   margin: 2px;
@@ -39,7 +38,7 @@ export const Title = styled.h2`
 `;
 
 export const ExitButton = styled(IoLogOutOutline)`
-  width  : 35px ;
+  width: 35px;
   font-size: 35px;
-  margin: 0 10px ;
+  margin: 0 10px;
 `;

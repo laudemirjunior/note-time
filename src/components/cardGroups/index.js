@@ -7,15 +7,14 @@ import {
   Title,
 } from "./styles";
 
-
-export default function CardGroups() {
+export default function CardGroups({ item }) {
   return (
     <CardContainer>
       <SubCardContainer>
         <CardImage />
-        <Title>React</Title>
+        <Title>{item && item.title}</Title>
       </SubCardContainer>
-      <ExitButton/>     
+      <ExitButton />
     </CardContainer>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import CardGroups from "../../components/cardGroups";
 import { ExitButton } from "../../components/cardGroups/styles";
 import Sidebar from "../../components/sidebar";
 import {
@@ -21,11 +20,10 @@ export default function MyGroups() {
             placeholder="Realize sua busca"
             type={"text"}
           ></SearchInput>
-          <ExitButton/>
+          <ExitButton />
         </InputBox>
         <GroupBox>
           <PageTitle>Meus Grupos</PageTitle>
-          <CardGroups />
         </GroupBox>
       </Box>
     </Container>
