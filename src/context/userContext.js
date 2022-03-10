@@ -6,6 +6,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [activities, setActivities] = useState([]);
+  const [scoreBoard, setScoreBoard] = useState([]);
   const { token } = UseLogin();
 
   function getUserActivities() {
@@ -71,15 +72,31 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   }
 
+  function getScoreBoard() {
+    api
+      .get(
+        `/user/all`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => setScoreBoard(res.data))
+      .catch((err) => console.log(err));
+  }
   return (
     <UserContext.Provider
       value={{
         activities,
+        scoreBoard,
         favoriteActivity,
         deleteActivity,
         startTimer,
         pauseTimer,
         getUserActivities,
+        getScoreBoard,
       }}
     >
       {children}
