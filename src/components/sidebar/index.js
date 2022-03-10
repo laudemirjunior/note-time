@@ -1,16 +1,16 @@
-import React from "react";
 import { Container } from "./styles";
 import {
   AiFillTrophy,
   AiFillFolder,
   AiOutlineGroup,
   AiOutlineTeam,
-  AiFillEdit,
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/userContext";
 
 export default function Sidebar() {
   const navigate = useNavigate();
+  const { user } = useUserContext();
 
   return (
     <Container>
@@ -34,11 +34,8 @@ export default function Sidebar() {
       </div>
       <div id="user">
         <div>
-          <div />
-          <p>Gabriel</p>
-          <a>
-            <AiFillEdit />
-          </a>
+          {/* <img src={user.image[0].url_image} alt={user.name} /> */}
+          <p>{user.name}</p>
         </div>
       </div>
     </Container>

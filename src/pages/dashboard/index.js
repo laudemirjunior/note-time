@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/sidebar";
+import CreateActivity from "../../components/createActivity";
 import * as C from "./styles";
 import {
   HiOutlineLogout,
@@ -22,6 +23,7 @@ export default function Dashboard() {
   const notFavorites = activities.filter(
     (activity) => activity.favorite === false
   );
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     getUserActivities();
@@ -48,7 +50,7 @@ export default function Dashboard() {
 
         <section>
           <C.Title>
-            <h3>Atividades recentes</h3>
+            <h3>Atividades favoritas</h3>
             <div>
               <HiOutlineArrowLeft />
               <HiOutlineArrowRight />
@@ -65,9 +67,10 @@ export default function Dashboard() {
           <C.Title>
             <h3>Minhas Atividades</h3>
             <div>
-              <button>Criar</button>
+              <button onClick={() => setShow(!show)}>Criar</button>
               <HiOutlineInformationCircle />
             </div>
+            <div id="modal">{show && <CreateActivity />}</div>
           </C.Title>
           <C.Activities>
             {notFavorites.map((activity) => (

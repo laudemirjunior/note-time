@@ -35,21 +35,14 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       gap: 20px;
-      div {
-        width: 40px;
-        height: 40px;
-        background-color: var(--white);
+      img {
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
       }
-      p,
-      a {
+      p {
         font-size: 20px;
         color: var(--white);
-      }
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
     }
   }
