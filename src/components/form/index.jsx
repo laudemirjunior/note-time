@@ -7,7 +7,7 @@ import { useState } from "react";
 import { UseLogin } from "../../context/loginContext";
 
 const FormComponent = () => {
-  const { logIn } = UseLogin();
+  const { logIn, registerUser } = UseLogin();
   const [login, setLogin] = useState(true);
 
   const LoginSchema = yup.object().shape({
@@ -35,14 +35,23 @@ const FormComponent = () => {
     resolver: login ? yupResolver(LoginSchema) : yupResolver(RegisterSchema),
   });
 
-  function onSubmitFunction(data) {
+  function loginSubmitFunction(data) {
     logIn(data);
+  }
+
+  function registerSubmitFunction(data) {
+    console.log("rodou");
+    registerUser(data);
   }
 
   return (
     <>
       <h1>Entrar</h1>
-      <Form onSubmit={handleSubmit(onSubmitFunction)}>
+      <Form
+        onSubmit={handleSubmit(
+          login ? loginSubmitFunction : registerSubmitFunction
+        )}
+      >
         {login ? (
           <>
             <input
@@ -65,7 +74,14 @@ const FormComponent = () => {
 
             <button type="submit">Entrar</button>
             <span>Não possui conta? Clique no botão abaixo</span>
-            <button onClick={() => setLogin(false)}>Cadastre-se</button>
+            <button
+              onClick={() => {
+                setLogin(false);
+                console.log(login);
+              }}
+            >
+              Cadastre-se
+            </button>
             <span>Para recuperar a senha clique aqui</span>
           </>
         ) : (
